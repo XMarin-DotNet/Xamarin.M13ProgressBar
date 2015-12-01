@@ -1,266 +1,416 @@
-﻿using System;
-
-using UIKit;
+using System;
+using CoreAnimation;
+using CoreGraphics;
 using Foundation;
 using ObjCRuntime;
-using CoreGraphics;
+using UIKit;
 
-namespace M13ProgressBarSharp
+namespace M13ProgressView
 {
-    // The first step to creating a binding is to add your native library ("libNativeLibrary.a")
-    // to the project by right-clicking (or Control-clicking) the folder containing this source
-    // file and clicking "Add files..." and then simply select the native library (or libraries)
-    // that you want to bind.
-    //
-    // When you do that, you'll notice that MonoDevelop generates a code-behind file for each
-    // native library which will contain a [LinkWith] attribute. MonoDevelop auto-detects the
-    // architectures that the native library supports and fills in that information for you,
-    // however, it cannot auto-detect any Frameworks or other system libraries that the
-    // native library may depend on, so you'll need to fill in that information yourself.
-    //
-    // Once you've done that, you're ready to move on to binding the API...
-    //
-    //
-    // Here is where you'd define your API definition for the native Objective-C library.
-    //
-    // For example, to bind the following Objective-C class:
-    //
-    //     @interface Widget : NSObject {
-    //     }
-    //
-    // The C# binding would look like this:
-    //
-    //     [BaseType (typeof (NSObject))]
-    //     interface Widget {
-    //     }
-    //
-    // To bind Objective-C properties, such as:
-    //
-    //     @property (nonatomic, readwrite, assign) CGPoint center;
-    //
-    // You would add a property definition in the C# interface like so:
-    //
-    //     [Export ("center")]
-    //     CGPoint Center { get; set; }
-    //
-    // To bind an Objective-C method, such as:
-    //
-    //     -(void) doSomething:(NSObject *)object atIndex:(NSInteger)index;
-    //
-    // You would add a method definition to the C# interface like so:
-    //
-    //     [Export ("doSomething:atIndex:")]
-    //     void DoSomething (NSObject object, int index);
-    //
-    // Objective-C "constructors" such as:
-    //
-    //     -(id)initWithElmo:(ElmoMuppet *)elmo;
-    //
-    // Can be bound as:
-    //
-    //     [Export ("initWithElmo:")]
-    //     IntPtr Constructor (ElmoMuppet elmo);
-    //
-    // For more information, see http://developer.xamarin.com/guides/ios/advanced_topics/binding_objective-c/
-    //
+	// @interface M13ProgressView : UIView
+	[BaseType (typeof(UIView))]
+	interface M13ProgressView
+	{
+		// @property (retain, nonatomic) UIColor * primaryColor;
+		[Export ("primaryColor", ArgumentSemantic.Retain)]
+		UIColor PrimaryColor { get; set; }
 
-    [Category]
-    [BaseType(typeof(UINavigationController))]
-    interface UINavigationController_M13ProgressViewBar
-    {
-        /**Show the progress bar.*/
-        //- (void)showProgress;
-        [Export("showProgress")]
-        void ShowProgress();
+		// @property (retain, nonatomic) UIColor * secondaryColor;
+		[Export ("secondaryColor", ArgumentSemantic.Retain)]
+		UIColor SecondaryColor { get; set; }
 
-        /**Set the progress to display on the progress bar.
-        @param progress The progress to display as a percentage from 0-1.
-        @param animated Wether or not to animate the change.
-        - (void)setProgress:(CGFloat)progress animated:(BOOL)animated;
-        */
-      
-        [Export("setProgress:animated:")]
-        void SetProgress(nfloat progress, bool animated);
+		// @property (assign, nonatomic) BOOL indeterminate;
+		[Export ("indeterminate")]
+		bool Indeterminate { get; set; }
 
+		// @property (assign, nonatomic) CGFloat animationDuration;
+		[Export ("animationDuration")]
+		nfloat AnimationDuration { get; set; }
 
-        /*@param title The string to replace the UINavigationBar's title while showing progress. 
-        - (void)setProgressTitle:(NSString *)title;*/
-        [Export("setProgressTitle:")]
-        void SetProgressTitle(string title);
+		// @property (readonly, nonatomic) CGFloat progress;
+		[Export ("progress")]
+		nfloat Progress { get; }
 
-        //- (void)setIndeterminate:
-        [Export("setIndeterminate:")]
-        void Setindeterminate(bool indeterminate);
+		// -(void)setProgress:(CGFloat)progress animated:(BOOL)animated;
+		[Export ("setProgress:animated:")]
+		void SetProgress (nfloat progress, bool animated);
 
-        //- (BOOL)getIndeterminate;
-        [Export("getIndeterminate")]
-        bool GetIndeterminate();
+		// -(void)performAction:(M13ProgressViewAction)action animated:(BOOL)animated;
+		[Export ("performAction:animated:")]
+		void PerformAction (M13ProgressViewAction action, bool animated);
+	}
 
-        //- (void)finishProgress;
-        [Export("finishProgress")]
-        void FinishProgress();
+	// @interface M13ProgressViewBar : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewBar
+	{
+		// @property (assign, nonatomic) M13ProgressViewBarProgressDirection progressDirection;
+		[Export ("progressDirection", ArgumentSemantic.Assign)]
+		M13ProgressViewBarProgressDirection ProgressDirection { get; set; }
 
-        [Export("cancelProgress")]
-        void CancelProgress();
+		// @property (assign, nonatomic) CGFloat progressBarThickness;
+		[Export ("progressBarThickness")]
+		nfloat ProgressBarThickness { get; set; }
 
-        [Export("isShowingProgressBar")]
-        bool IsShowingProgressBar();
+		// @property (assign, nonatomic) CGFloat progressBarCornerRadius;
+		[Export ("progressBarCornerRadius")]
+		nfloat ProgressBarCornerRadius { get; set; }
 
-        [Export("setPrimaryColor:")]
-        void SetPrimaryColor(UIColor primaryColor);
+		// @property (retain, nonatomic) UIColor * successColor;
+		[Export ("successColor", ArgumentSemantic.Retain)]
+		UIColor SuccessColor { get; set; }
 
-        [Export("setSecondaryColor:")]
-        void SetSecondaryColor(UIColor secondaryColor);
-    }
+		// @property (retain, nonatomic) UIColor * failureColor;
+		[Export ("failureColor", ArgumentSemantic.Retain)]
+		UIColor FailureColor { get; set; }
 
-    [BaseType(typeof(UIView))]
-    interface M13ProgressView
-    {
-        [Export("primaryColor", ArgumentSemantic.Retain)]
-        UIColor PrimaryColor{ get; set; }
+		// @property (assign, nonatomic) BOOL showPercentage;
+		[Export ("showPercentage")]
+		bool ShowPercentage { get; set; }
 
-        [Export("secondaryColor", ArgumentSemantic.Retain)]
-        UIColor SecondaryColor{ get; set; }
+		// @property (assign, nonatomic) M13ProgressViewBarPercentagePosition percentagePosition;
+		[Export ("percentagePosition", ArgumentSemantic.Assign)]
+		M13ProgressViewBarPercentagePosition PercentagePosition { get; set; }
+	}
 
-        [Export("indeterminate", ArgumentSemantic.Assign)]
-        bool Indeterminate{ get; set; }
+	// @interface M13ProgressViewBorderedBar : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewBorderedBar
+	{
+		// @property (assign, nonatomic) M13ProgressViewBorderedBarProgressDirection progressDirection;
+		[Export ("progressDirection", ArgumentSemantic.Assign)]
+		M13ProgressViewBorderedBarProgressDirection ProgressDirection { get; set; }
 
-        [Export("animationDuration", ArgumentSemantic.Assign)]
-        nfloat AnimationDuration{ get; set; }
+		// @property (assign, nonatomic) M13ProgressViewBorderedBarCornerType cornerType;
+		[Export ("cornerType", ArgumentSemantic.Assign)]
+		M13ProgressViewBorderedBarCornerType CornerType { get; set; }
 
-        [Export("progress")]
-        nfloat Progress{ get; }
+		// @property (assign, nonatomic) CGFloat cornerRadius;
+		[Export ("cornerRadius")]
+		nfloat CornerRadius { get; set; }
 
-        [Export("setProgress:animated:")]
-        void SetProgress(nfloat progress, bool animated);
+		// @property (assign, nonatomic) CGFloat borderWidth;
+		[Export ("borderWidth")]
+		nfloat BorderWidth { get; set; }
 
-        [Export("performAction:animated:")]
-        void PerformAction
-        (M13ProgressViewAction action, bool animated);
-    }
+		// @property (retain, nonatomic) UIColor * successColor;
+		[Export ("successColor", ArgumentSemantic.Retain)]
+		UIColor SuccessColor { get; set; }
 
-    [BaseType(typeof(M13ProgressView))]
-    interface M13ProgressViewRing
-    {
-        [Export("backgroundRingWidth", ArgumentSemantic.Assign)]
-        nfloat BackgroundRingWidth{ get; set; }
+		// @property (retain, nonatomic) UIColor * failureColor;
+		[Export ("failureColor", ArgumentSemantic.Retain)]
+		UIColor FailureColor { get; set; }
+	}
 
-        [Export("progressRingWidth", ArgumentSemantic.Assign)]
-        nfloat ProgressRingWidth{ get; set; }
+	// @interface M13ProgressViewFilteredImage : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewFilteredImage
+	{
+		// @property (retain, nonatomic) UIImage * progressImage;
+		[Export ("progressImage", ArgumentSemantic.Retain)]
+		UIImage ProgressImage { get; set; }
 
-        [Export("showPercentage", ArgumentSemantic.Assign)]
-        bool ShowPercentage{ get; set; }
-    }
+		// @property (retain, nonatomic) UIImageView * progressView;
+		[Export ("progressView", ArgumentSemantic.Retain)]
+		UIImageView ProgressView { get; set; }
 
-    [BaseType(typeof(UIView))]
-    interface M13ProgressHUD
-    {
-        [Export("initWithProgressView:")]
-        IntPtr Constructor(M13ProgressView progressView);
+		// @property (retain, nonatomic) NSArray * filters;
+		[Export ("filters", ArgumentSemantic.Retain)]
+		NSObject[] Filters { get; set; }
 
-        [Export("initAndShowWithProgressView:progress:indeterminate:status:mask:inView:")]
-        IntPtr Constructor(M13ProgressView progressView, nfloat progress, bool indeterminate, string status, M13ProgressHUDMaskType maskType, UIView view);
+		// @property (retain, nonatomic) NSArray * filterParameters;
+		[Export ("filterParameters", ArgumentSemantic.Retain)]
+		NSObject[] FilterParameters { get; set; }
+	}
 
-    
-        [Export("progressView", ArgumentSemantic.Retain)]
-        M13ProgressView ProgressView{ get; set; }
+	// @interface M13ProgressViewImage : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewImage
+	{
+		// @property (retain, nonatomic) UIImage * progressImage;
+		[Export ("progressImage", ArgumentSemantic.Retain)]
+		UIImage ProgressImage { get; set; }
 
-        [Export("primaryColor", ArgumentSemantic.Retain)]
-        UIColor PrimaryColor{ get; set; }
+		// @property (assign, nonatomic) M13ProgressViewImageProgressDirection progressDirection;
+		[Export ("progressDirection", ArgumentSemantic.Assign)]
+		M13ProgressViewImageProgressDirection ProgressDirection { get; set; }
 
-        [Export("secondaryColor", ArgumentSemantic.Retain)]
-        UIColor SecondaryColor{ get; set; }
+		// @property (assign, nonatomic) BOOL drawGreyscaleBackground;
+		[Export ("drawGreyscaleBackground")]
+		bool DrawGreyscaleBackground { get; set; }
+	}
 
-        [Export("progress")]
-        nfloat Progress{ get; }
+	// @interface M13ProgressViewLetterpress : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewLetterpress
+	{
+		// @property (assign, nonatomic) CGPoint numberOfGridPoints;
+		[Export ("numberOfGridPoints", ArgumentSemantic.Assign)]
+		CGPoint NumberOfGridPoints { get; set; }
 
-        [Export("indeterminate", ArgumentSemantic.Assign)]
-        bool Indeterminate{ get; set; }
+		// @property (assign, nonatomic) M13ProgressViewLetterpressPointShape pointShape;
+		[Export ("pointShape", ArgumentSemantic.Assign)]
+		M13ProgressViewLetterpressPointShape PointShape { get; set; }
 
-        [Export("applyBlurToBackground", ArgumentSemantic.Assign)]
-        bool ApplyBlurToBackground{ get; set; }
+		// @property (assign, nonatomic) CGFloat pointSpacing;
+		[Export ("pointSpacing")]
+		nfloat PointSpacing { get; set; }
 
+		// @property (assign, nonatomic) CGSize notchSize;
+		[Export ("notchSize", ArgumentSemantic.Assign)]
+		CGSize NotchSize { get; set; }
 
-        [Export("hudBackgroundColor", ArgumentSemantic.Retain)]
-        UIColor HudBackgroundColor{ get; set; }
+		// @property (assign, nonatomic) CGFloat springConstant;
+		[Export ("springConstant")]
+		nfloat SpringConstant { get; set; }
 
-        [Export("statusPosition", ArgumentSemantic.Assign)]
-        M13ProgressHUDStatusPosition StatusPosition{ get; set; }
+		// @property (assign, nonatomic) CGFloat dampingCoefficient;
+		[Export ("dampingCoefficient")]
+		nfloat DampingCoefficient { get; set; }
 
+		// @property (assign, nonatomic) CGFloat mass;
+		[Export ("mass")]
+		nfloat Mass { get; set; }
+	}
 
-        [Export("offsetFromCenter", ArgumentSemantic.Assign)]
-        UIOffset OffsetFromCenter{ get; set; }
+	// @interface M13ProgressViewMetroDot : CALayer
+	[BaseType (typeof(CALayer))]
+	interface M13ProgressViewMetroDot
+	{
+		// @property (assign, nonatomic) BOOL highlighted;
+		[Export ("highlighted")]
+		bool Highlighted { get; set; }
 
-        [Export("contentMargin", ArgumentSemantic.Assign)]
-        nfloat ContentMargin{ get; set; }
+		// @property (retain, nonatomic) UIColor * successColor;
+		[Export ("successColor", ArgumentSemantic.Retain)]
+		UIColor SuccessColor { get; set; }
 
-        [Export("cornerRadius", ArgumentSemantic.Assign)]
-        nfloat CornerRadius{ get; set; }
+		// @property (retain, nonatomic) UIColor * failureColor;
+		[Export ("failureColor", ArgumentSemantic.Retain)]
+		UIColor FailureColor { get; set; }
 
-        [Export("maskType", ArgumentSemantic.Assign)]
-        M13ProgressHUDMaskType MaskType{ get; set; }
+		// @property (retain, nonatomic) UIColor * primaryColor;
+		[Export ("primaryColor", ArgumentSemantic.Retain)]
+		UIColor PrimaryColor { get; set; }
 
-        [Export("maskColor", ArgumentSemantic.Retain)]
-        UIColor MaskColor{ get; set; }
+		// @property (retain, nonatomic) UIColor * secondaryColor;
+		[Export ("secondaryColor", ArgumentSemantic.Retain)]
+		UIColor SecondaryColor { get; set; }
 
-        [Export("statusColor", ArgumentSemantic.Retain)]
-        UIColor StatusColor{ get; set; }
+		// -(void)performAction:(M13ProgressViewAction)action animated:(BOOL)animated;
+		[Export ("performAction:animated:")]
+		void PerformAction (M13ProgressViewAction action, bool animated);
+	}
 
-        [Export("statusFont", ArgumentSemantic.Retain)]
-        UIFont StatusFont{ get; set; }
+	// @interface M13ProgressViewMetro : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewMetro
+	{
+		// @property (assign, nonatomic) NSUInteger numberOfDots;
+		[Export ("numberOfDots")]
+		nuint NumberOfDots { get; set; }
 
-        [Export("progressViewSize", ArgumentSemantic.Assign)]
-        CGSize ProgressViewSize{ get; set; }
+		// @property (assign, nonatomic) M13ProgressViewMetroAnimationShape animationShape;
+		[Export ("animationShape", ArgumentSemantic.Assign)]
+		M13ProgressViewMetroAnimationShape AnimationShape { get; set; }
 
-        [Export("animationPoint", ArgumentSemantic.Assign)]
-        CGPoint AnimationPoint{ get; set; }
+		// @property (assign, nonatomic) CGSize dotSize;
+		[Export ("dotSize", ArgumentSemantic.Assign)]
+		CGSize DotSize { get; set; }
 
-        [Export("animationDuration", ArgumentSemantic.Assign)]
-        nfloat AnimationDuration{ get; set; }
+		// @property (retain, nonatomic) M13ProgressViewMetroDot * metroDot;
+		[Export ("metroDot", ArgumentSemantic.Retain)]
+		M13ProgressViewMetroDot MetroDot { get; set; }
 
-        [Export("status", ArgumentSemantic.Retain)]
-        string Status{ get; set; }
+		// @property (retain, nonatomic) UIColor * successColor;
+		[Export ("successColor", ArgumentSemantic.Retain)]
+		UIColor SuccessColor { get; set; }
 
-        [Export("minimumSize", ArgumentSemantic.Assign)]
-        CGSize MinimumSize{ get; set; }
+		// @property (retain, nonatomic) UIColor * failureColor;
+		[Export ("failureColor", ArgumentSemantic.Retain)]
+		UIColor FailureColor { get; set; }
 
-        [Export("dismissAfterAction", ArgumentSemantic.Assign)]
-        bool DismissAfterAction{ get; set; }
+		// -(BOOL)isAnimating;
+		[Export ("isAnimating")]
+		bool IsAnimating { get; }
 
+		// -(void)beginAnimating;
+		[Export ("beginAnimating")]
+		void BeginAnimating ();
 
-        [Export("isVisible")]
-        bool IsVisible();
+		// -(void)stopAnimating;
+		[Export ("stopAnimating")]
+		void StopAnimating ();
+	}
 
-        [Export("shouldAutorotate", ArgumentSemantic.Assign)]
-        bool ShouldAutorotate{ get; set; }
+	// @interface M13ProgressViewMetroDotPolygon : M13ProgressViewMetroDot
+	[BaseType (typeof(M13ProgressViewMetroDot))]
+	interface M13ProgressViewMetroDotPolygon
+	{
+		// @property (assign, nonatomic) NSUInteger numberOfSides;
+		[Export ("numberOfSides")]
+		nuint NumberOfSides { get; set; }
 
+		// @property (assign, nonatomic) CGFloat radius;
+		[Export ("radius")]
+		nfloat Radius { get; set; }
+	}
 
-        [Export("orientation", ArgumentSemantic.Assign)]
-        UIInterfaceOrientation Orientation{ get; set; }
+	// @interface M13ProgressViewPie : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewPie
+	{
+		// @property (assign, nonatomic) CGFloat backgroundRingWidth;
+		[Export ("backgroundRingWidth")]
+		nfloat BackgroundRingWidth { get; set; }
+	}
 
-        [Export("setProgress:animated:")]
-        void SetProgress(nfloat progress, bool animated);
+	// @interface M13ProgressViewRadiative : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewRadiative
+	{
+		// @property (assign, nonatomic) CGPoint originationPoint;
+		[Export ("originationPoint", ArgumentSemantic.Assign)]
+		CGPoint OriginationPoint { get; set; }
 
-        [Export("performAction:animated:")]
-        void PerformAction(M13ProgressViewAction action, bool animated);
+		// @property (assign, nonatomic) CGFloat ripplesRadius;
+		[Export ("ripplesRadius")]
+		nfloat RipplesRadius { get; set; }
 
+		// @property (assign, nonatomic) CGFloat rippleWidth;
+		[Export ("rippleWidth")]
+		nfloat RippleWidth { get; set; }
 
-        [Export("show:")]
-        void Show(bool animated);
+		// @property (assign, nonatomic) M13ProgressViewRadiativeShape shape;
+		[Export ("shape", ArgumentSemantic.Assign)]
+		M13ProgressViewRadiativeShape Shape { get; set; }
 
-        [Export("hide:")]
-        void Hide(bool animated);
+		// @property (assign, nonatomic) NSUInteger numberOfRipples;
+		[Export ("numberOfRipples")]
+		nuint NumberOfRipples { get; set; }
 
-        [Export("dismiss:")]
-        void Dismiss(bool animated);
-    }
+		// @property (assign, nonatomic) NSUInteger pulseWidth;
+		[Export ("pulseWidth")]
+		nuint PulseWidth { get; set; }
 
-    [Category]
-    [BaseType(typeof(UIView))]
-    interface UIView_M13ProgressHUD
-    {
-        [Export("progressHUD")]
-        M13ProgressHUD ProgressHUD();
-    }
+		// @property (assign, nonatomic) BOOL progressOutwards;
+		[Export ("progressOutwards")]
+		bool ProgressOutwards { get; set; }
+	}
+
+	// @interface M13ProgressViewRing : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewRing
+	{
+		// @property (assign, nonatomic) CGFloat backgroundRingWidth;
+		[Export ("backgroundRingWidth")]
+		nfloat BackgroundRingWidth { get; set; }
+
+		// @property (assign, nonatomic) CGFloat progressRingWidth;
+		[Export ("progressRingWidth")]
+		nfloat ProgressRingWidth { get; set; }
+
+		// @property (assign, nonatomic) BOOL showPercentage;
+		[Export ("showPercentage")]
+		bool ShowPercentage { get; set; }
+	}
+
+	// @interface M13ProgressViewSegmentedBar : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewSegmentedBar
+	{
+		// @property (assign, nonatomic) M13ProgressViewSegmentedBarProgressDirection progressDirection;
+		[Export ("progressDirection", ArgumentSemantic.Assign)]
+		M13ProgressViewSegmentedBarProgressDirection ProgressDirection { get; set; }
+
+		// @property (assign, nonatomic) M13ProgressViewSegmentedBarSegmentShape segmentShape;
+		[Export ("segmentShape", ArgumentSemantic.Assign)]
+		M13ProgressViewSegmentedBarSegmentShape SegmentShape { get; set; }
+
+		// @property (assign, nonatomic) CGFloat cornerRadius;
+		[Export ("cornerRadius")]
+		nfloat CornerRadius { get; set; }
+
+		// @property (assign, nonatomic) NSInteger numberOfSegments;
+		[Export ("numberOfSegments")]
+		nint NumberOfSegments { get; set; }
+
+		// @property (assign, nonatomic) CGFloat segmentSeparation;
+		[Export ("segmentSeparation")]
+		nfloat SegmentSeparation { get; set; }
+
+		// @property (retain, nonatomic) UIColor * successColor;
+		[Export ("successColor", ArgumentSemantic.Retain)]
+		UIColor SuccessColor { get; set; }
+
+		// @property (retain, nonatomic) UIColor * failureColor;
+		[Export ("failureColor", ArgumentSemantic.Retain)]
+		UIColor FailureColor { get; set; }
+
+		// @property (retain, nonatomic) NSArray * primaryColors;
+		[Export ("primaryColors", ArgumentSemantic.Retain)]
+		NSObject[] PrimaryColors { get; set; }
+
+		// @property (retain, nonatomic) NSArray * secondaryColors;
+		[Export ("secondaryColors", ArgumentSemantic.Retain)]
+		NSObject[] SecondaryColors { get; set; }
+	}
+
+	// @interface M13ProgressViewSegmentedRing : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewSegmentedRing
+	{
+		// @property (assign, nonatomic) CGFloat progressRingWidth;
+		[Export ("progressRingWidth")]
+		nfloat ProgressRingWidth { get; set; }
+
+		// @property (assign, nonatomic) NSInteger numberOfSegments;
+		[Export ("numberOfSegments")]
+		nint NumberOfSegments { get; set; }
+
+		// @property (assign, nonatomic) CGFloat segmentSeparationAngle;
+		[Export ("segmentSeparationAngle")]
+		nfloat SegmentSeparationAngle { get; set; }
+
+		// @property (assign, nonatomic) M13ProgressViewSegmentedRingSegmentBoundaryType segmentBoundaryType;
+		[Export ("segmentBoundaryType", ArgumentSemantic.Assign)]
+		M13ProgressViewSegmentedRingSegmentBoundaryType SegmentBoundaryType { get; set; }
+
+		// @property (assign, nonatomic) BOOL showPercentage;
+		[Export ("showPercentage")]
+		bool ShowPercentage { get; set; }
+	}
+
+	// @interface M13ProgressViewStripedBar : M13ProgressView
+	[BaseType (typeof(M13ProgressView))]
+	interface M13ProgressViewStripedBar
+	{
+		// @property (assign, nonatomic) M13ProgressViewStripedBarCornerType cornerType;
+		[Export ("cornerType", ArgumentSemantic.Assign)]
+		M13ProgressViewStripedBarCornerType CornerType { get; set; }
+
+		// @property (assign, nonatomic) CGFloat cornerRadius;
+		[Export ("cornerRadius")]
+		nfloat CornerRadius { get; set; }
+
+		// @property (assign, nonatomic) CGFloat stripeWidth;
+		[Export ("stripeWidth")]
+		nfloat StripeWidth { get; set; }
+
+		// @property (assign, nonatomic) BOOL animateStripes;
+		[Export ("animateStripes")]
+		bool AnimateStripes { get; set; }
+
+		// @property (assign, nonatomic) BOOL showStripes;
+		[Export ("showStripes")]
+		bool ShowStripes { get; set; }
+
+		// @property (retain, nonatomic) UIColor * stripeColor;
+		[Export ("stripeColor", ArgumentSemantic.Retain)]
+		UIColor StripeColor { get; set; }
+
+		// @property (assign, nonatomic) CGFloat borderWidth;
+		[Export ("borderWidth")]
+		nfloat BorderWidth { get; set; }
+	}
 }
-

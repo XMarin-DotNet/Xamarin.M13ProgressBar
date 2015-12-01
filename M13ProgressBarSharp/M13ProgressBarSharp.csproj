@@ -39,8 +39,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="libM13ProgressBar.linkwith.cs">
-      <DependentUpon>libM13ProgressBar.a</DependentUpon>
+    <Compile Include="libM13ProgressView.linkwith.cs">
+      <DependentUpon>libM13ProgressView.a</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +51,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="libM13ProgressBar.a" />
+    <ObjcBindingNativeLibrary Include="libM13ProgressView.a" />
   </ItemGroup>
 </Project>

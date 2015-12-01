@@ -1,69 +1,95 @@
-﻿using System;
-
-
-namespace M13ProgressBarSharp
+namespace M13ProgressView
 {
+	public enum M13ProgressViewAction : uint
+	{
+		None,
+		Success,
+		Failure
+	}
 
-    //    typedef enum {
-    //        M13ProgressViewBarPercentagePositionLeft,
-    //        M13ProgressViewBarPercentagePositionRight,
-    //        M13ProgressViewBarPercentagePositionTop,
-    //        M13ProgressViewBarPercentagePositionBottom,
-    //    } M13ProgressViewBarPercentagePosition;
-    //
-    //    typedef enum {
-    //        M13ProgressViewBarProgressDirectionLeftToRight,
-    //        M13ProgressViewBarProgressDirectionBottomToTop,
-    //        M13ProgressViewBarProgressDirectionRightToLeft,
-    //        M13ProgressViewBarProgressDirectionTopToBottom
-    //    } M13ProgressViewBarProgressDirection;
+	public enum M13ProgressViewBarPercentagePosition : uint
+	{
+		Left,
+		Right,
+		Top,
+		Bottom
+	}
 
-    public enum M13ProgressViewBarPercentagePosition
-    {
-        Left,
-        Right,
-        Top,
-        Bottom
-    }
+	public enum M13ProgressViewBarProgressDirection : uint
+	{
+		LeftToRight,
+		BottomToTop,
+		RightToLeft,
+		TopToBottom
+	}
 
-    public enum M13ProgressViewBarProgressDirection
-    {
-        LeftToRight,
-        BottomToTop,
-        RightToLeft,
-        TopToBottom
-    }
+	public enum M13ProgressViewBorderedBarProgressDirection : uint
+	{
+		LeftToRight,
+		BottomToTop,
+		RightToLeft,
+		TopToBottom
+	}
 
-    //    typedef enum {
-    //        /**Resets the action and returns the progress view to its normal state.*/
-    //        M13ProgressViewActionNone,
-    //        /**The progress view shows success.*/
-    //        M13ProgressViewActionSuccess,
-    //        /**The progress view shows failure.*/
-    //        M13ProgressViewActionFailure
-    //    } M13ProgressViewAction;
+	public enum M13ProgressViewBorderedBarCornerType : uint
+	{
+		Square,
+		Rounded,
+		Circle
+	}
 
-    public enum M13ProgressViewAction
-    {
-        None,
-        Success,
-        Failure
-    }
+	public enum M13ProgressViewImageProgressDirection : uint
+	{
+		LeftToRight,
+		BottomToTop,
+		RightToLeft,
+		TopToBottom
+	}
 
-    public enum M13ProgressHUDStatusPosition
-    {
-        BelowProgress,
-        AboveProgress,
-        LeftOfProgress,
-        RightOfProgress
-    }
+	public enum M13ProgressViewLetterpressPointShape : uint
+	{
+		Square,
+		Circle
+	}
 
-    public enum M13ProgressHUDMaskType
-    {
-        None,
-        SolidColor,
-        Gradient,
-        IOS7Blur
-    }
+	public enum M13ProgressViewMetroAnimationShape : uint
+	{
+		Ellipse,
+		Rectangle,
+		Line
+	}
+
+	public enum M13ProgressViewRadiativeShape : uint
+	{
+		Circle,
+		Square
+	}
+
+	public enum M13ProgressViewSegmentedBarProgressDirection : uint
+	{
+		LeftToRight,
+		BottomToTop,
+		RightToLeft,
+		TopToBottom
+	}
+
+	public enum M13ProgressViewSegmentedBarSegmentShape : uint
+	{
+		Rectangle,
+		RoundedRect,
+		Circle
+	}
+
+	public enum M13ProgressViewSegmentedRingSegmentBoundaryType : uint
+	{
+		Wedge,
+		Rectangle
+	}
+
+	public enum M13ProgressViewStripedBarCornerType : uint
+	{
+		Square,
+		Rounded,
+		Circle
+	}
 }
-

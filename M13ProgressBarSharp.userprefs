@@ -1,0 +1,12 @@
+﻿<Properties StartupItem="M13ProgressBarSharp/M13ProgressBarSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="M13ProgressBarSharp/ApiDefinition.cs">
+    <Files>
+      <File FileName="M13ProgressBarSharp/ApiDefinition.cs" Line="355" Column="56" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
