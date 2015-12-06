@@ -1,12 +1,17 @@
 ﻿<Properties StartupItem="M13ProgressBarSharp/M13ProgressBarSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="M13ProgressBarSharp/ApiDefinition.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="M13ProgressBarSharp/obj/Debug/ios/M13ProgressView/UINavigationController_M13ProgressViewBar.g.cs">
     <Files>
-      <File FileName="M13ProgressBarSharp/ApiDefinition.cs" Line="355" Column="56" />
+      <File FileName="../App/iOS/Foundbite.iOS/CollectionViewCells/FeedCell.cs" Line="56" Column="48" />
+      <File FileName="../App/iOS/Foundbite.iOS/ViewControllers/MainViewController.cs" Line="39" Column="26" />
+      <File FileName="M13ProgressBarSharp/ApiDefinition.cs" Line="455" Column="7" />
+      <File FileName="M13ProgressBarSharp/obj/Debug/ios/M13ProgressView/UINavigationController_M13ProgressViewBar.g.cs" Line="102" Column="22" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Users/james/Documents/GitHub/App/DataAccess/Client.cs" line="513" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

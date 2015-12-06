@@ -413,4 +413,53 @@ namespace M13ProgressView
 		[Export ("borderWidth")]
 		nfloat BorderWidth { get; set; }
 	}
+
+	// @interface M13ProgressViewBar (UINavigationController)
+	[BaseType (typeof(UINavigationController))]
+	interface UINavigationController_M13ProgressViewBar
+	{
+		// -(void)showProgress;
+		[Export ("showProgress")]
+		void ShowProgress ();
+
+		// -(void)setProgress:(CGFloat)progress animated:(BOOL)animated;
+		[Export ("setProgress:animated:")]
+		void SetProgress (nfloat progress, bool animated);
+
+		// -(void)setProgressTitle:(NSString *)title;
+		[Export ("setProgressTitle:")]
+		void SetProgressTitle (string title);
+
+//		// -(void)setIndeterminate:(BOOL)indeterminate;
+//		[Export ("setIndeterminate:")]
+//		void SetIndeterminate (bool indeterminate);
+//
+//		// -(BOOL)getIndeterminate;
+//		[Export ("getIndeterminate")]
+//		bool Indeterminate { get; }
+
+    // @property (assign, nonatomic) BOOL indeterminate;
+    [Export ("indeterminate")]
+    bool Indeterminate { get; set; }
+
+		// -(void)finishProgress;
+		[Export ("finishProgress")]
+		void FinishProgress ();
+
+		// -(void)cancelProgress;
+		[Export ("cancelProgress")]
+		void CancelProgress ();
+
+		// -(BOOL)isShowingProgressBar;
+		[Export ("isShowingProgressBar")]
+		bool IsShowingProgressBar { get; }
+
+		// -(void)setPrimaryColor:(UIColor *)primaryColor;
+		[Export ("setPrimaryColor:")]
+		void SetPrimaryColor (UIColor primaryColor);
+
+		// -(void)setSecondaryColor:(UIColor *)secondaryColor;
+		[Export ("setSecondaryColor:")]
+		void SetSecondaryColor (UIColor secondaryColor);
+	}
 }

@@ -22,6 +22,7 @@
 		1A00A4861C0DDE5D00E8B23C /* M13ProgressViewSegmentedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00A4771C0DDE5D00E8B23C /* M13ProgressViewSegmentedBar.m */; };
 		1A00A4871C0DDE5D00E8B23C /* M13ProgressViewSegmentedRing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00A4791C0DDE5D00E8B23C /* M13ProgressViewSegmentedRing.m */; };
 		1A00A4881C0DDE5D00E8B23C /* M13ProgressViewStripedBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A00A47B1C0DDE5D00E8B23C /* M13ProgressViewStripedBar.m */; };
+		1A3D7F5E1C12010A00897974 /* UINavigationController+M13ProgressViewBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D7F5D1C12010A00897974 /* UINavigationController+M13ProgressViewBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -67,6 +68,8 @@
 		1A00A4791C0DDE5D00E8B23C /* M13ProgressViewSegmentedRing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewSegmentedRing.m; sourceTree = "<group>"; };
 		1A00A47A1C0DDE5D00E8B23C /* M13ProgressViewStripedBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M13ProgressViewStripedBar.h; sourceTree = "<group>"; };
 		1A00A47B1C0DDE5D00E8B23C /* M13ProgressViewStripedBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M13ProgressViewStripedBar.m; sourceTree = "<group>"; };
+		1A3D7F5C1C12010A00897974 /* UINavigationController+M13ProgressViewBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+M13ProgressViewBar.h"; sourceTree = "<group>"; };
+		1A3D7F5D1C12010A00897974 /* UINavigationController+M13ProgressViewBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+M13ProgressViewBar.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +102,8 @@
 		1A00A4581C0DDE3600E8B23C /* M13ProgressView */ = {
 			isa = PBXGroup;
 			children = (
+				1A3D7F5C1C12010A00897974 /* UINavigationController+M13ProgressViewBar.h */,
+				1A3D7F5D1C12010A00897974 /* UINavigationController+M13ProgressViewBar.m */,
 				1A00A4621C0DDE5D00E8B23C /* M13ProgressViewBar.h */,
 				1A00A4631C0DDE5D00E8B23C /* M13ProgressViewBar.m */,
 				1A00A4641C0DDE5D00E8B23C /* M13ProgressViewBorderedBar.h */,
@@ -193,6 +198,7 @@
 				1A00A4881C0DDE5D00E8B23C /* M13ProgressViewStripedBar.m in Sources */,
 				1A00A47E1C0DDE5D00E8B23C /* M13ProgressViewFilteredImage.m in Sources */,
 				1A00A4811C0DDE5D00E8B23C /* M13ProgressViewMetro.m in Sources */,
+				1A3D7F5E1C12010A00897974 /* UINavigationController+M13ProgressViewBar.m in Sources */,
 				1A00A45C1C0DDE3600E8B23C /* M13ProgressView.m in Sources */,
 				1A00A4861C0DDE5D00E8B23C /* M13ProgressViewSegmentedBar.m in Sources */,
 				1A00A47C1C0DDE5D00E8B23C /* M13ProgressViewBar.m in Sources */,
@@ -326,6 +332,7 @@
 				1A00A4611C0DDE3600E8B23C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
