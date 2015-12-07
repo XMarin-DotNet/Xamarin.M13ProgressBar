@@ -1,5 +1,1 @@
 /Users/james/Documents/GitHub/Xamarin.M13ProgressBar/M13ProgressBarSharp/obj/Debug/Xamarin.iOS,Version=v1.0.AssemblyAttribute.cs
-/Users/james/Documents/GitHub/Xamarin.M13ProgressBar/M13ProgressBarSharp/bin/Debug/M13ProgressBarSharp.dll.mdb
-/Users/james/Documents/GitHub/Xamarin.M13ProgressBar/M13ProgressBarSharp/bin/Debug/M13ProgressBarSharp.dll
-/Users/james/Documents/GitHub/Xamarin.M13ProgressBar/M13ProgressBarSharp/obj/Debug/M13ProgressBarSharp.dll
-/Users/james/Documents/GitHub/Xamarin.M13ProgressBar/M13ProgressBarSharp/obj/Debug/M13ProgressBarSharp.dll.mdb

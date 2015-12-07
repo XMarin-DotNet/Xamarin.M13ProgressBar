@@ -127,5 +127,9 @@ namespace ApiDefinition {
 		public extern static void void_objc_msgSend_nint (IntPtr receiver, IntPtr selector, global::System.nint arg1);
 		[DllImport (LIBOBJC_DYLIB, EntryPoint="objc_msgSendSuper")]
 		public extern static void void_objc_msgSendSuper_nint (IntPtr receiver, IntPtr selector, global::System.nint arg1);
+		[DllImport (LIBOBJC_DYLIB, EntryPoint="objc_msgSend")]
+		public extern static bool bool_objc_msgSend_bool (IntPtr receiver, IntPtr selector, bool arg1);
+		[DllImport (LIBOBJC_DYLIB, EntryPoint="objc_msgSendSuper")]
+		public extern static bool bool_objc_msgSendSuper_bool (IntPtr receiver, IntPtr selector, bool arg1);
 	}
 }

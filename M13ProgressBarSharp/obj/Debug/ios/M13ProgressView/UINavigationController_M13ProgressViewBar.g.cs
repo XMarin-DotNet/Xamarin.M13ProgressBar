@@ -34,162 +34,88 @@ using CoreAnimation;
 using CoreFoundation;
 
 namespace M13ProgressView {
-	[Register("UINavigationController_M13ProgressViewBar", true)]
-	public unsafe partial class UINavigationController_M13ProgressViewBar : global::UIKit.UINavigationController {
+	public unsafe static partial class UINavigationController_M13ProgressViewBar  {
 		
 		[CompilerGenerated]
-		static readonly IntPtr class_ptr = Class.GetHandle ("UINavigationController_M13ProgressViewBar");
+		static readonly IntPtr class_ptr = Class.GetHandle ("UINavigationController");
 		
-		public override IntPtr ClassHandle { get { return class_ptr; } }
-		
-		[CompilerGenerated]
-		[EditorBrowsable (EditorBrowsableState.Advanced)]
-		[Export ("init")]
-		public UINavigationController_M13ProgressViewBar () : base (NSObjectFlag.Empty)
-		{
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-			if (IsDirectBinding) {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend (this.Handle, global::ObjCRuntime.Selector.GetHandle ("init")), "init");
-			} else {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper (this.SuperHandle, global::ObjCRuntime.Selector.GetHandle ("init")), "init");
-			}
-		}
-
-		[CompilerGenerated]
-		[DesignatedInitializer]
-		[EditorBrowsable (EditorBrowsableState.Advanced)]
-		[Export ("initWithCoder:")]
-		public UINavigationController_M13ProgressViewBar (NSCoder coder) : base (NSObjectFlag.Empty)
-		{
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-
-			if (IsDirectBinding) {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("initWithCoder:"), coder.Handle), "initWithCoder:");
-			} else {
-				InitializeHandle (global::ApiDefinition.Messaging.IntPtr_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("initWithCoder:"), coder.Handle), "initWithCoder:");
-			}
-		}
-
-		[CompilerGenerated]
-		[EditorBrowsable (EditorBrowsableState.Advanced)]
-		protected UINavigationController_M13ProgressViewBar (NSObjectFlag t) : base (t)
-		{
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-		}
-
-		[CompilerGenerated]
-		[EditorBrowsable (EditorBrowsableState.Advanced)]
-		protected internal UINavigationController_M13ProgressViewBar (IntPtr handle) : base (handle)
-		{
-			IsDirectBinding = GetType ().Assembly == global::ApiDefinition.Messaging.this_assembly;
-		}
-
 		[Export ("cancelProgress")]
 		[CompilerGenerated]
-		public virtual void CancelProgress ()
+		public static void CancelProgress (this global::UIKit.UINavigationController This)
 		{
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend (this.Handle, Selector.GetHandle ("cancelProgress"));
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper (this.SuperHandle, Selector.GetHandle ("cancelProgress"));
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend (This.Handle, Selector.GetHandle ("cancelProgress"));
 		}
 		
 		[Export ("finishProgress")]
 		[CompilerGenerated]
-		public virtual void FinishProgress ()
+		public static void FinishProgress (this global::UIKit.UINavigationController This)
 		{
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend (this.Handle, Selector.GetHandle ("finishProgress"));
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper (this.SuperHandle, Selector.GetHandle ("finishProgress"));
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend (This.Handle, Selector.GetHandle ("finishProgress"));
+		}
+		
+		[Export ("setIndeterminate:")]
+		[CompilerGenerated]
+		public static void SetIndeterminate (this global::UIKit.UINavigationController This, bool indeterminate)
+		{
+			global::ApiDefinition.Messaging.void_objc_msgSend_bool (This.Handle, Selector.GetHandle ("setIndeterminate:"), indeterminate);
 		}
 		
 		[Export ("setPrimaryColor:")]
 		[CompilerGenerated]
-		public virtual void SetPrimaryColor (global::UIKit.UIColor primaryColor)
+		public static void SetPrimaryColor (this global::UIKit.UINavigationController This, global::UIKit.UIColor primaryColor)
 		{
 			if (primaryColor == null)
 				throw new ArgumentNullException ("primaryColor");
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("setPrimaryColor:"), primaryColor.Handle);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("setPrimaryColor:"), primaryColor.Handle);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (This.Handle, Selector.GetHandle ("setPrimaryColor:"), primaryColor.Handle);
 		}
 		
 		[Export ("setProgress:animated:")]
 		[CompilerGenerated]
-		public virtual void SetProgress (global::System.nfloat progress, bool animated)
+		public static void SetProgress (this global::UIKit.UINavigationController This, global::System.nfloat progress, bool animated)
 		{
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_nfloat_bool (this.Handle, Selector.GetHandle ("setProgress:animated:"), progress, animated);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_nfloat_bool (this.SuperHandle, Selector.GetHandle ("setProgress:animated:"), progress, animated);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_nfloat_bool (This.Handle, Selector.GetHandle ("setProgress:animated:"), progress, animated);
 		}
 		
 		[Export ("setProgressTitle:")]
 		[CompilerGenerated]
-		public virtual void SetProgressTitle (string title)
+		public static void SetProgressTitle (this global::UIKit.UINavigationController This, string title)
 		{
 			if (title == null)
 				throw new ArgumentNullException ("title");
 			var nstitle = NSString.CreateNative (title);
 			
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("setProgressTitle:"), nstitle);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("setProgressTitle:"), nstitle);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (This.Handle, Selector.GetHandle ("setProgressTitle:"), nstitle);
 			NSString.ReleaseNative (nstitle);
 			
 		}
 		
 		[Export ("setSecondaryColor:")]
 		[CompilerGenerated]
-		public virtual void SetSecondaryColor (global::UIKit.UIColor secondaryColor)
+		public static void SetSecondaryColor (this global::UIKit.UINavigationController This, global::UIKit.UIColor secondaryColor)
 		{
 			if (secondaryColor == null)
 				throw new ArgumentNullException ("secondaryColor");
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (this.Handle, Selector.GetHandle ("setSecondaryColor:"), secondaryColor.Handle);
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper_IntPtr (this.SuperHandle, Selector.GetHandle ("setSecondaryColor:"), secondaryColor.Handle);
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend_IntPtr (This.Handle, Selector.GetHandle ("setSecondaryColor:"), secondaryColor.Handle);
 		}
 		
 		[Export ("showProgress")]
 		[CompilerGenerated]
-		public virtual void ShowProgress ()
+		public static void ShowProgress (this global::UIKit.UINavigationController This)
 		{
-			if (IsDirectBinding) {
-				global::ApiDefinition.Messaging.void_objc_msgSend (this.Handle, Selector.GetHandle ("showProgress"));
-			} else {
-				global::ApiDefinition.Messaging.void_objc_msgSendSuper (this.SuperHandle, Selector.GetHandle ("showProgress"));
-			}
+			global::ApiDefinition.Messaging.void_objc_msgSend (This.Handle, Selector.GetHandle ("showProgress"));
 		}
 		
 		[CompilerGenerated]
 		public virtual bool Indeterminate {
-			[Export ("indeterminate")]
+			[Export ("getIndeterminate")]
 			get {
 				if (IsDirectBinding) {
-					return global::ApiDefinition.Messaging.bool_objc_msgSend (this.Handle, Selector.GetHandle ("indeterminate"));
+					return global::ApiDefinition.Messaging.bool_objc_msgSend (this.Handle, Selector.GetHandle ("getIndeterminate"));
 				} else {
-					return global::ApiDefinition.Messaging.bool_objc_msgSendSuper (this.SuperHandle, Selector.GetHandle ("indeterminate"));
+					return global::ApiDefinition.Messaging.bool_objc_msgSendSuper (this.SuperHandle, Selector.GetHandle ("getIndeterminate"));
 				}
 			}
 			
-			[Export ("setIndeterminate:")]
-			set {
-				if (IsDirectBinding) {
-					global::ApiDefinition.Messaging.void_objc_msgSend_bool (this.Handle, Selector.GetHandle ("setIndeterminate:"), value);
-				} else {
-					global::ApiDefinition.Messaging.void_objc_msgSendSuper_bool (this.SuperHandle, Selector.GetHandle ("setIndeterminate:"), value);
-				}
-			}
 		}
 		
 		[CompilerGenerated]

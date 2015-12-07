@@ -415,6 +415,7 @@ namespace M13ProgressView
 	}
 
 	// @interface M13ProgressViewBar (UINavigationController)
+	[Category]
 	[BaseType (typeof(UINavigationController))]
 	interface UINavigationController_M13ProgressViewBar
 	{
@@ -430,17 +431,13 @@ namespace M13ProgressView
 		[Export ("setProgressTitle:")]
 		void SetProgressTitle (string title);
 
-//		// -(void)setIndeterminate:(BOOL)indeterminate;
-//		[Export ("setIndeterminate:")]
-//		void SetIndeterminate (bool indeterminate);
-//
-//		// -(BOOL)getIndeterminate;
-//		[Export ("getIndeterminate")]
-//		bool Indeterminate { get; }
+		// -(void)setIndeterminate:(BOOL)indeterminate;
+		[Export ("setIndeterminate:")]
+		void SetIndeterminate (bool indeterminate);
 
-    // @property (assign, nonatomic) BOOL indeterminate;
-    [Export ("indeterminate")]
-    bool Indeterminate { get; set; }
+		// -(BOOL)getIndeterminate;
+		[Export ("getIndeterminate")]
+    bool GetIndeterminate();
 
 		// -(void)finishProgress;
 		[Export ("finishProgress")]
@@ -450,9 +447,9 @@ namespace M13ProgressView
 		[Export ("cancelProgress")]
 		void CancelProgress ();
 
-		// -(BOOL)isShowingProgressBar;
-		[Export ("isShowingProgressBar")]
-		bool IsShowingProgressBar { get; }
+    // -(BOOL)isShowingProgressBar;(BOOL)isShowingProgressBar;
+		[Export ("setIsShowingProgressBar:")]
+    bool IsShowingProgressBar(bool isShowingProgressBar);
 
 		// -(void)setPrimaryColor:(UIColor *)primaryColor;
 		[Export ("setPrimaryColor:")]
